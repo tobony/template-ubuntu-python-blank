@@ -3,11 +3,12 @@
 {
 	"name": "Ubuntu-Python3",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	// "image": "mcr.microsoft.com/devcontainers/base:jammy",
-    	"build": {
-		// Path is relative to the devcontainer.json file.
-		"dockerfile": "Dockerfile"
-    	},
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	
+    	//"build": {
+	//	// Path is relative to the devcontainer.json file.
+	//	"dockerfile": "Dockerfile"
+    	//},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -32,10 +33,10 @@
 
 	"waitFor": "onCreateCommand",
 	"updateContentCommand": "sudo python3 -m pip install -r requirements.txt",
-	//"updateContentCommand": "sudo python3 -m pip install -r requirements.txt \
-	//			&& sudo apt update \
-	// 			&& sudo apt install -y \
-	//			&& sudo apt install fonts-naver-d2coding",
+	"updateContentCommand": "sudo python3 -m pip install -r requirements.txt \
+				&& sudo apt update \
+	 			&& sudo apt install -y \
+				&& sudo apt install fonts-naver-d2coding",
 
 
 	// Use 'postCreateCommand' to run commands after the container is created.
