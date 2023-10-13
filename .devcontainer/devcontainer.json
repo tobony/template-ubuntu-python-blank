@@ -28,7 +28,7 @@
 	//},
 
 	"waitFor": "onCreateCommand",
-	"updateContentCommand": "python3 -m pip install -r requirements.txt",
+	"updateContentCommand": "sudo python3 -m pip install -r requirements.txt",
 
 
 
