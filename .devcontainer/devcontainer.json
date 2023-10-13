@@ -32,11 +32,11 @@
 	//},
 
 	"waitFor": "onCreateCommand",
-	"updateContentCommand": "sudo python3 -m pip install -r requirements.txt",
-	"updateContentCommand": "sudo python3 -m pip install -r requirements.txt \
-				&& sudo apt update \
-	 			&& sudo apt install -y \
-				&& sudo apt install fonts-naver-d2coding",
+	"updateContentCommand": "python3 -m pip install -r requirements.txt",
+	// "updateContentCommand": "sudo python3 -m pip install -r requirements.txt \
+	//			&& sudo apt update \
+	// 			&& sudo apt install -y \
+	//			&& sudo apt install fonts-naver-d2coding",
 
 
 	// Use 'postCreateCommand' to run commands after the container is created.
