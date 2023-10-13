@@ -1,26 +1,30 @@
-FROM ubuntu:20.04 as python_builder
+FROM ubuntu:22.04 as python_builder
 
 ARG python_version=3.11.4
 ARG python_major_version
-ENV DEBIAN_FRONTEND=noninteractive
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV DEBIAN_FRONTEND noninteractive
+
+
+COPY ZscalerCertificate.crt /usr/local/share/ca-certificates/ZscalerCertificate.crt
+
+RUN find /tmp -name \*.deb -exec rm {} +
+
+RUN apt-get update &&\
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends curl gcc g++ gnupg unixodbc-dev openssl git &&\
+    apt-get install -y software-properties-common ca-certificates &&\
+    apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libssl-dev libreadline-dev libffi-dev wget libbz2-dev libsqlite3-dev && \
+    update-ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
 # 필수 패키지 설치
-RUN apt-get update && apt-get install -yq software-properties-common  \
-    && wget  \
-    build-essential  \
-    libssl-dev  \
-    libbz2-dev  \
-    libffi-dev  \
-    zlib1g-dev  \
-    libsqlite3-dev  \
-    tzdata  \
-    libbluetooth-dev \
-    tk-dev \
-    uuid-dev \
-    && \
-    ln -fs /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
-    dpkg-reconfigure --frontend noninteractive tzdata && \
-    apt-get install fonts-naver-d2coding
+RUN ln -fs /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN apt-get install fonts-naver-d2coding
 
 # Python 3.11.4 다운로드 및 설치
 WORKDIR /usr/src
