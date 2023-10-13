@@ -5,7 +5,7 @@ ARG python_major_version
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 필수 패키지 설치
-RUN sudo apt-get update && sudo apt-get install -yq software-properties-common  \
+RUN apt-get update && apt-get install -yq software-properties-common  \
     && wget  \
     build-essential  \
     libssl-dev  \
@@ -20,7 +20,7 @@ RUN sudo apt-get update && sudo apt-get install -yq software-properties-common  
     && \
     ln -fs /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
-    sudo apt-get install fonts-naver-d2coding
+    apt-get install fonts-naver-d2coding
 
 # Python 3.11.4 다운로드 및 설치
 WORKDIR /usr/src
