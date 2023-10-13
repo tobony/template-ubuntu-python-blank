@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -yq software-properties-common  \
     && \
     ln -fs /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
-    sudo apt install fonts-naver-d2coding
+    apt-get install fonts-naver-d2coding
 
 # Python 3.11.4 다운로드 및 설치
 WORKDIR /usr/src
