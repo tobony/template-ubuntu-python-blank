@@ -7,11 +7,6 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBIAN_FRONTEND noninteractive
 
-
-COPY ZscalerCertificate.crt /usr/local/share/ca-certificates/ZscalerCertificate.crt
-
-RUN find /tmp -name \*.deb -exec rm {} +
-
 RUN apt-get update &&\
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends curl gcc g++ gnupg unixodbc-dev openssl git &&\
